@@ -1,11 +1,5 @@
 import pytest
-from poker import *
-
-def test_PKCard_init_exception():
-    for face in ['10S', 'BD', 'TA']:
-        with pytest.raises(ValueError):
-            PKCard(face)
-
-def test_PKCard_repr():
-    assert repr(PKCard('AC')) == 'AC'
-
+from pokerOop import *
+# pytest -v test_poker
+# pytest -v -s test_poker (-s : 캡쳐하지말고 다 보여줘라)
+# pytest -v --cov=. 했을 때 100%가 되도록!

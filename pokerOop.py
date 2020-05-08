@@ -11,6 +11,23 @@ class Hands : find hand ranking and check who is winner. Each method return [han
 from abc import ABCMeta, abstractmethod
 import random
 import sys
+from enum import IntEnum
+
+class Ranking(IntEnum):
+    HIGH_CARD = 0
+    ONE_PAIR = 1
+    TWO_PAIRS = 2
+    THREE_OF_A_KIND = 3
+    STRAIGHT = 4
+    FLUSH = 5
+    FULL_HOUSE = 6
+    FOUR_OF_A_KIND = 7
+    STRAIGHT_FLUSH = 8
+    # $ python
+    # >>> from poker import Ranking
+    # >>> Ranking.FLUSH > Ranking.ONE_PAIR => True
+    # >>> Ranking(5) => <Ranking.FLUCH: 5>
+    # A : 9H, 9D, kickers    B : 9S, 9C, kickers => kickers를 비교
 
 class Card(metaclass=ABCMeta):
     """Abstact class for playing cards"""
@@ -271,96 +288,96 @@ class Hands:
                 return True
             return None
 
-
-if __name__ == '__main__':
-    def test(did_pass):
-        """  Print the result of a test.  """
-        linenum = sys._getframe(1).f_lineno  # Get the caller's line number.
-        if did_pass:
-            msg = "Test at line {0} ok.".format(linenum)
-        else:
-            msg = ("Test at line {0} FAILED.".format(linenum))
-        print(msg)
-
-    #기본 hand_ranking 비교
-    test_code = [Hands([PKCard('3D'), PKCard('5D'), PKCard('7C'), PKCard('AD'), PKCard('4D')]),
-                  Hands([PKCard('KD'), PKCard('JD'), PKCard('QC'), PKCard('AD'), PKCard('TD')])]
-    test(test_code[0].tie_break(test_code[1]) == False) #high card < straight => False
-
-    test_code = [Hands([PKCard('4D'), PKCard('4C'), PKCard('4C'), PKCard('AS'), PKCard('AD')]),
-                  Hands([PKCard('2D'), PKCard('3D'), PKCard('4C'), PKCard('5D'), PKCard('6D')])]
-    test(test_code[0].tie_break(test_code[1]) == True)  # full house > straight => True
-
-    test_code = [Hands([PKCard('2D'), PKCard('8D'), PKCard('4D'), PKCard('5D'), PKCard('6D')]),
-                 Hands([PKCard('2D'), PKCard('2S'), PKCard('4H'), PKCard('JD'), PKCard('6D')])]
-    test(test_code[0].tie_break(test_code[1]) == True)  # flush > one pair => True
-
-    test_code = [Hands([PKCard('4D'), PKCard('AH'), PKCard('AC'), PKCard('AS'), PKCard('AD')]),
-                 Hands([PKCard('JH'), PKCard('2S'), PKCard('JS'), PKCard('8H'), PKCard('2H')])]
-    test(test_code[0].tie_break(test_code[1]) == True)  # four of a kind > two pair => True
-
-    test_code = [Hands([PKCard('2D'), PKCard('8D'), PKCard('4D'), PKCard('5D'), PKCard('6D')]),
-                 Hands([PKCard('6H'), PKCard('5S'), PKCard('4S'), PKCard('3H'), PKCard('2H')])]
-    test(test_code[0].tie_break(test_code[1]) == True)  # flush > straight => True
-
-    test_code = [Hands([PKCard('QC'), PKCard('QS'), PKCard('2S'), PKCard('QH'), PKCard('9H')]),
-                 Hands([PKCard('4D'), PKCard('4C'), PKCard('4C'), PKCard('AS'), PKCard('AD')])]
-    test(test_code[0].tie_break(test_code[1]) == False)  # three of a kind < full house => False
-
-    #같은 hand_ranking 일 때
-    test_code = [Hands([PKCard('TC'), PKCard('8S'), PKCard('7S'), PKCard('6H'), PKCard('4C')]),
-                 Hands([PKCard('TD'), PKCard('8D'), PKCard('7D'), PKCard('6H'), PKCard('3D')])]
-    test(test_code[0].tie_break(test_code[1]) == True)  # high card(T-8-7-6-4) > high card(T-8-7-6-3) => True
-
-    test_code = [Hands([PKCard('TS'), PKCard('8S'), PKCard('TH'), PKCard('7H'), PKCard('4C')]),
-                 Hands([PKCard('2D'), PKCard('2S'), PKCard('4H'), PKCard('JD'), PKCard('6D')])]
-    test(test_code[0].tie_break(test_code[1]) == True)  # one pair(T) > one pair(2) => True
-
-    test_code = [Hands([PKCard('2S'), PKCard('8S'), PKCard('2H'), PKCard('7H'), PKCard('4C')]),
-                 Hands([PKCard('2D'), PKCard('2C'), PKCard('4H'), PKCard('JD'), PKCard('6D')])]
-    test(test_code[0].tie_break(test_code[1]) == False)  # one pair(2-8) < one pair(2-J) => False
-
-    test_code = [Hands([PKCard('5C'), PKCard('5S'), PKCard('4S'), PKCard('4H'), PKCard('TH')]),
-                 Hands([PKCard('5C'), PKCard('5S'), PKCard('3C'), PKCard('3D'), PKCard('QH')])]
-    test(test_code[0].tie_break(test_code[1]) == True)  # two pair(5-4) > two pair(5-3) => True
-
-    test_code = [Hands([PKCard('KD'), PKCard('KS'), PKCard('7D'), PKCard('7H'), PKCard('8H')]),
-                 Hands([PKCard('KC'), PKCard('KS'), PKCard('7S'), PKCard('7H'), PKCard('6H')])]
-    test(test_code[0].tie_break(test_code[1]) == True)  # two pair(K-7-8) > two pair(K-7-6) => True
-
-    test_code = [Hands([PKCard('3D'), PKCard('3S'), PKCard('3C'), PKCard('JC'), PKCard('7H')]),
-                 Hands([PKCard('3D'), PKCard('3S'), PKCard('3C'), PKCard('JS'), PKCard('5H')])]
-    test(test_code[0].tie_break(test_code[1]) == True)  # three of a kind(3-j-7) > three of a kind(3-j-5) => True
-
-    test_code = [Hands([PKCard('AH'), PKCard('5S'), PKCard('4S'), PKCard('3H'), PKCard('2H')]),
-                 Hands([PKCard('6H'), PKCard('5S'), PKCard('4S'), PKCard('3H'), PKCard('2H')])]
-    test(test_code[0].tie_break(test_code[1]) == False)  # straight(5) < straight(6) => False
-
-    test_code = [Hands([PKCard('KD'), PKCard('JD'), PKCard('9D'), PKCard('6D'), PKCard('4D')]),
-                 Hands([PKCard('QC'), PKCard('JC'), PKCard('7C'), PKCard('6C'), PKCard('5C')])]
-    test(test_code[0].tie_break(test_code[1]) == True)  # flush(K) < flush(Q) => True
-
-    test_code = [Hands([PKCard('JH'), PKCard('TH'), PKCard('8H'), PKCard('4H'), PKCard('3H')]),
-                 Hands([PKCard('JC'), PKCard('TC'), PKCard('8C'), PKCard('4C'), PKCard('2C')])]
-    test(test_code[0].tie_break(test_code[1]) == True)  # flush(j-t-8-4-3) > flush(j-t-8-4-2) => True
-
-    test_code = [Hands([PKCard('8S'), PKCard('8D'), PKCard('8H'), PKCard('7D'), PKCard('7C')]),
-                 Hands([PKCard('4D'), PKCard('4C'), PKCard('4S'), PKCard('9D'), PKCard('9C')])]
-    test(test_code[0].tie_break(test_code[1]) == True)  # full house(8) > full house(4) => True
-
-    test_code = [Hands([PKCard('8S'), PKCard('8D'), PKCard('8H'), PKCard('7D'), PKCard('7C')]),
-                 Hands([PKCard('8D'), PKCard('8C'), PKCard('8S'), PKCard('9D'), PKCard('9C')])]
-    test(test_code[0].tie_break(test_code[1]) == False)  # full house(8-7) < full house(8-9) => False
-
-    test_code = [Hands([PKCard('5C'), PKCard('2D'), PKCard('5D'), PKCard('5H'), PKCard('5S')]),
-                 Hands([PKCard('4D'), PKCard('6H'), PKCard('6C'), PKCard('6S'), PKCard('6D')])]
-    test(test_code[0].tie_break(test_code[1]) == False)  # four of a kind(5) < four of a kind(6) => False
-
-    test_code = [Hands([PKCard('5C'), PKCard('2D'), PKCard('5D'), PKCard('5H'), PKCard('5S')]),
-                 Hands([PKCard('4D'), PKCard('5H'), PKCard('5C'), PKCard('5S'), PKCard('5D')])]
-    test(test_code[0].tie_break(test_code[1]) == False)  # four of a kind(5-2) < four of a kind(5-4) => False
-
-    test_code = [Hands([PKCard('TH'), PKCard('JH'), PKCard('KH'), PKCard('AH'), PKCard('QH')]),
-                 Hands([PKCard('5S'), PKCard('2S'), PKCard('AS'), PKCard('4S'), PKCard('3S')])]
-    test(test_code[0].tie_break(test_code[1]) == True)  # straight flush(A) > straight flush(5) => True
-
+#
+# if __name__ == '__main__':
+#     def test(did_pass):
+#         """  Print the result of a test.  """
+#         linenum = sys._getframe(1).f_lineno  # Get the caller's line number.
+#         if did_pass:
+#             msg = "Test at line {0} ok.".format(linenum)
+#         else:
+#             msg = ("Test at line {0} FAILED.".format(linenum))
+#         print(msg)
+#
+#     #기본 hand_ranking 비교
+#     test_code = [Hands([PKCard('3D'), PKCard('5D'), PKCard('7C'), PKCard('AD'), PKCard('4D')]),
+#                   Hands([PKCard('KD'), PKCard('JD'), PKCard('QC'), PKCard('AD'), PKCard('TD')])]
+#     test(test_code[0].tie_break(test_code[1]) == False) #high card < straight => False
+#
+#     test_code = [Hands([PKCard('4D'), PKCard('4C'), PKCard('4C'), PKCard('AS'), PKCard('AD')]),
+#                   Hands([PKCard('2D'), PKCard('3D'), PKCard('4C'), PKCard('5D'), PKCard('6D')])]
+#     test(test_code[0].tie_break(test_code[1]) == True)  # full house > straight => True
+#
+#     test_code = [Hands([PKCard('2D'), PKCard('8D'), PKCard('4D'), PKCard('5D'), PKCard('6D')]),
+#                  Hands([PKCard('2D'), PKCard('2S'), PKCard('4H'), PKCard('JD'), PKCard('6D')])]
+#     test(test_code[0].tie_break(test_code[1]) == True)  # flush > one pair => True
+#
+#     test_code = [Hands([PKCard('4D'), PKCard('AH'), PKCard('AC'), PKCard('AS'), PKCard('AD')]),
+#                  Hands([PKCard('JH'), PKCard('2S'), PKCard('JS'), PKCard('8H'), PKCard('2H')])]
+#     test(test_code[0].tie_break(test_code[1]) == True)  # four of a kind > two pair => True
+#
+#     test_code = [Hands([PKCard('2D'), PKCard('8D'), PKCard('4D'), PKCard('5D'), PKCard('6D')]),
+#                  Hands([PKCard('6H'), PKCard('5S'), PKCard('4S'), PKCard('3H'), PKCard('2H')])]
+#     test(test_code[0].tie_break(test_code[1]) == True)  # flush > straight => True
+#
+#     test_code = [Hands([PKCard('QC'), PKCard('QS'), PKCard('2S'), PKCard('QH'), PKCard('9H')]),
+#                  Hands([PKCard('4D'), PKCard('4C'), PKCard('4C'), PKCard('AS'), PKCard('AD')])]
+#     test(test_code[0].tie_break(test_code[1]) == False)  # three of a kind < full house => False
+#
+#     #같은 hand_ranking 일 때
+#     test_code = [Hands([PKCard('TC'), PKCard('8S'), PKCard('7S'), PKCard('6H'), PKCard('4C')]),
+#                  Hands([PKCard('TD'), PKCard('8D'), PKCard('7D'), PKCard('6H'), PKCard('3D')])]
+#     test(test_code[0].tie_break(test_code[1]) == True)  # high card(T-8-7-6-4) > high card(T-8-7-6-3) => True
+#
+#     test_code = [Hands([PKCard('TS'), PKCard('8S'), PKCard('TH'), PKCard('7H'), PKCard('4C')]),
+#                  Hands([PKCard('2D'), PKCard('2S'), PKCard('4H'), PKCard('JD'), PKCard('6D')])]
+#     test(test_code[0].tie_break(test_code[1]) == True)  # one pair(T) > one pair(2) => True
+#
+#     test_code = [Hands([PKCard('2S'), PKCard('8S'), PKCard('2H'), PKCard('7H'), PKCard('4C')]),
+#                  Hands([PKCard('2D'), PKCard('2C'), PKCard('4H'), PKCard('JD'), PKCard('6D')])]
+#     test(test_code[0].tie_break(test_code[1]) == False)  # one pair(2-8) < one pair(2-J) => False
+#
+#     test_code = [Hands([PKCard('5C'), PKCard('5S'), PKCard('4S'), PKCard('4H'), PKCard('TH')]),
+#                  Hands([PKCard('5C'), PKCard('5S'), PKCard('3C'), PKCard('3D'), PKCard('QH')])]
+#     test(test_code[0].tie_break(test_code[1]) == True)  # two pair(5-4) > two pair(5-3) => True
+#
+#     test_code = [Hands([PKCard('KD'), PKCard('KS'), PKCard('7D'), PKCard('7H'), PKCard('8H')]),
+#                  Hands([PKCard('KC'), PKCard('KS'), PKCard('7S'), PKCard('7H'), PKCard('6H')])]
+#     test(test_code[0].tie_break(test_code[1]) == True)  # two pair(K-7-8) > two pair(K-7-6) => True
+#
+#     test_code = [Hands([PKCard('3D'), PKCard('3S'), PKCard('3C'), PKCard('JC'), PKCard('7H')]),
+#                  Hands([PKCard('3D'), PKCard('3S'), PKCard('3C'), PKCard('JS'), PKCard('5H')])]
+#     test(test_code[0].tie_break(test_code[1]) == True)  # three of a kind(3-j-7) > three of a kind(3-j-5) => True
+#
+#     test_code = [Hands([PKCard('AH'), PKCard('5S'), PKCard('4S'), PKCard('3H'), PKCard('2H')]),
+#                  Hands([PKCard('6H'), PKCard('5S'), PKCard('4S'), PKCard('3H'), PKCard('2H')])]
+#     test(test_code[0].tie_break(test_code[1]) == False)  # straight(5) < straight(6) => False
+#
+#     test_code = [Hands([PKCard('KD'), PKCard('JD'), PKCard('9D'), PKCard('6D'), PKCard('4D')]),
+#                  Hands([PKCard('QC'), PKCard('JC'), PKCard('7C'), PKCard('6C'), PKCard('5C')])]
+#     test(test_code[0].tie_break(test_code[1]) == True)  # flush(K) < flush(Q) => True
+#
+#     test_code = [Hands([PKCard('JH'), PKCard('TH'), PKCard('8H'), PKCard('4H'), PKCard('3H')]),
+#                  Hands([PKCard('JC'), PKCard('TC'), PKCard('8C'), PKCard('4C'), PKCard('2C')])]
+#     test(test_code[0].tie_break(test_code[1]) == True)  # flush(j-t-8-4-3) > flush(j-t-8-4-2) => True
+#
+#     test_code = [Hands([PKCard('8S'), PKCard('8D'), PKCard('8H'), PKCard('7D'), PKCard('7C')]),
+#                  Hands([PKCard('4D'), PKCard('4C'), PKCard('4S'), PKCard('9D'), PKCard('9C')])]
+#     test(test_code[0].tie_break(test_code[1]) == True)  # full house(8) > full house(4) => True
+#
+#     test_code = [Hands([PKCard('8S'), PKCard('8D'), PKCard('8H'), PKCard('7D'), PKCard('7C')]),
+#                  Hands([PKCard('8D'), PKCard('8C'), PKCard('8S'), PKCard('9D'), PKCard('9C')])]
+#     test(test_code[0].tie_break(test_code[1]) == False)  # full house(8-7) < full house(8-9) => False
+#
+#     test_code = [Hands([PKCard('5C'), PKCard('2D'), PKCard('5D'), PKCard('5H'), PKCard('5S')]),
+#                  Hands([PKCard('4D'), PKCard('6H'), PKCard('6C'), PKCard('6S'), PKCard('6D')])]
+#     test(test_code[0].tie_break(test_code[1]) == False)  # four of a kind(5) < four of a kind(6) => False
+#
+#     test_code = [Hands([PKCard('5C'), PKCard('2D'), PKCard('5D'), PKCard('5H'), PKCard('5S')]),
+#                  Hands([PKCard('4D'), PKCard('5H'), PKCard('5C'), PKCard('5S'), PKCard('5D')])]
+#     test(test_code[0].tie_break(test_code[1]) == False)  # four of a kind(5-2) < four of a kind(5-4) => False
+#
+#     test_code = [Hands([PKCard('TH'), PKCard('JH'), PKCard('KH'), PKCard('AH'), PKCard('QH')]),
+#                  Hands([PKCard('5S'), PKCard('2S'), PKCard('AS'), PKCard('4S'), PKCard('3S')])]
+#     test(test_code[0].tie_break(test_code[1]) == True)  # straight flush(A) > straight flush(5) => True
+#
