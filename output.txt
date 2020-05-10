@@ -1,0 +1,97 @@
+============================= test session starts =============================
+platform win32 -- Python 3.7.5, pytest-5.4.1, py-1.8.1, pluggy-0.13.1 -- c:\users\ujin2\pycharmprojects\pytestpoker\scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\ujin2\Desktop\2020학교\2020_1\2020_인응_홍진표\pyTestPoker
+plugins: cov-2.8.1
+collecting ... collected 79 items
+
+test_poker.py::test_illegalCard PASSED                                   [  1%]
+test_poker.py::test_notFiveCards PASSED                                  [  2%]
+test_poker.py::test_Deck PASSED                                          [  3%]
+test_poker.py::test_is_straight[faces0-Ranking.STRAIGHT] PASSED          [  5%]
+test_poker.py::test_is_straight[faces1-Ranking.STRAIGHT] PASSED          [  6%]
+test_poker.py::test_is_straight[faces2-Ranking.STRAIGHT] PASSED          [  7%]
+test_poker.py::test_is_flush[faces0-Ranking.FLUSH] PASSED                [  8%]
+test_poker.py::test_is_flush[faces1-Ranking.FLUSH] PASSED                [ 10%]
+test_poker.py::test_is_flush[faces2-Ranking.FLUSH] PASSED                [ 11%]
+test_poker.py::test_is_flush[faces3-Ranking.FLUSH] PASSED                [ 12%]
+test_poker.py::test_is_flush[faces4-Ranking.FLUSH] PASSED                [ 13%]
+test_poker.py::test_is_find_a_kind[faces0-Ranking.FOUR_OF_A_KIND] PASSED [ 15%]
+test_poker.py::test_is_find_a_kind[faces1-Ranking.FOUR_OF_A_KIND] PASSED [ 16%]
+test_poker.py::test_is_find_a_kind[faces2-Ranking.FOUR_OF_A_KIND] PASSED [ 17%]
+test_poker.py::test_is_find_a_kind[faces3-Ranking.FOUR_OF_A_KIND] PASSED [ 18%]
+test_poker.py::test_is_find_a_kind[faces4-Ranking.FOUR_OF_A_KIND] PASSED [ 20%]
+test_poker.py::test_is_find_a_kind[faces5-Ranking.FOUR_OF_A_KIND] PASSED [ 21%]
+test_poker.py::test_is_find_a_kind[faces6-Ranking.THREE_OF_A_KIND] PASSED [ 22%]
+test_poker.py::test_is_find_a_kind[faces7-Ranking.THREE_OF_A_KIND] PASSED [ 24%]
+test_poker.py::test_is_find_a_kind[faces8-Ranking.THREE_OF_A_KIND] PASSED [ 25%]
+test_poker.py::test_is_find_a_kind[faces9-Ranking.THREE_OF_A_KIND] PASSED [ 26%]
+test_poker.py::test_is_find_a_kind[faces10-Ranking.TWO_PAIRS] PASSED     [ 27%]
+test_poker.py::test_is_find_a_kind[faces11-Ranking.TWO_PAIRS] PASSED     [ 29%]
+test_poker.py::test_is_find_a_kind[faces12-Ranking.TWO_PAIRS] PASSED     [ 30%]
+test_poker.py::test_is_find_a_kind[faces13-Ranking.TWO_PAIRS] PASSED     [ 31%]
+test_poker.py::test_is_find_a_kind[faces14-Ranking.TWO_PAIRS] PASSED     [ 32%]
+test_poker.py::test_is_find_a_kind[faces15-Ranking.TWO_PAIRS] PASSED     [ 34%]
+test_poker.py::test_is_find_a_kind[faces16-Ranking.TWO_PAIRS] PASSED     [ 35%]
+test_poker.py::test_is_find_a_kind[faces17-Ranking.ONE_PAIR] PASSED      [ 36%]
+test_poker.py::test_is_find_a_kind[faces18-Ranking.ONE_PAIR] PASSED      [ 37%]
+test_poker.py::test_is_find_a_kind[faces19-Ranking.ONE_PAIR] PASSED      [ 39%]
+test_poker.py::test_is_find_a_kind[faces20-Ranking.ONE_PAIR] PASSED      [ 40%]
+test_poker.py::test_is_find_a_kind[faces21-Ranking.ONE_PAIR] PASSED      [ 41%]
+test_poker.py::test_is_find_a_kind_None[faces0-Ranking.HIGH_CARD] PASSED [ 43%]
+test_poker.py::test_is_find_a_kind_None[faces1-Ranking.HIGH_CARD] PASSED [ 44%]
+test_poker.py::test_is_find_a_kind_None[faces2-Ranking.HIGH_CARD] PASSED [ 45%]
+test_poker.py::test_eval[faces0-Ranking.STRAIGHT_FLUSH] PASSED           [ 46%]
+test_poker.py::test_eval[faces1-Ranking.STRAIGHT_FLUSH] PASSED           [ 48%]
+test_poker.py::test_eval[faces2-Ranking.STRAIGHT_FLUSH] PASSED           [ 49%]
+test_poker.py::test_eval[faces3-Ranking.FOUR_OF_A_KIND] PASSED           [ 50%]
+test_poker.py::test_eval[faces4-Ranking.FOUR_OF_A_KIND] PASSED           [ 51%]
+test_poker.py::test_eval[faces5-Ranking.FOUR_OF_A_KIND] PASSED           [ 53%]
+test_poker.py::test_eval[faces6-Ranking.FOUR_OF_A_KIND] PASSED           [ 54%]
+test_poker.py::test_eval[faces7-Ranking.FOUR_OF_A_KIND] PASSED           [ 55%]
+test_poker.py::test_eval[faces8-Ranking.FOUR_OF_A_KIND] PASSED           [ 56%]
+test_poker.py::test_eval[faces9-Ranking.FULL_HOUSE] PASSED               [ 58%]
+test_poker.py::test_eval[faces10-Ranking.FULL_HOUSE] PASSED              [ 59%]
+test_poker.py::test_eval[faces11-Ranking.FULL_HOUSE] PASSED              [ 60%]
+test_poker.py::test_eval[faces12-Ranking.FULL_HOUSE] PASSED              [ 62%]
+test_poker.py::test_eval[faces13-Ranking.FULL_HOUSE] PASSED              [ 63%]
+test_poker.py::test_eval[faces14-Ranking.FULL_HOUSE] PASSED              [ 64%]
+test_poker.py::test_eval[faces15-Ranking.FLUSH] PASSED                   [ 65%]
+test_poker.py::test_eval[faces16-Ranking.FLUSH] PASSED                   [ 67%]
+test_poker.py::test_eval[faces17-Ranking.FLUSH] PASSED                   [ 68%]
+test_poker.py::test_eval[faces18-Ranking.FLUSH] PASSED                   [ 69%]
+test_poker.py::test_eval[faces19-Ranking.FLUSH] PASSED                   [ 70%]
+test_poker.py::test_eval[faces20-Ranking.STRAIGHT] PASSED                [ 72%]
+test_poker.py::test_eval[faces21-Ranking.STRAIGHT] PASSED                [ 73%]
+test_poker.py::test_eval[faces22-Ranking.STRAIGHT] PASSED                [ 74%]
+test_poker.py::test_eval[faces23-Ranking.THREE_OF_A_KIND] PASSED         [ 75%]
+test_poker.py::test_eval[faces24-Ranking.THREE_OF_A_KIND] PASSED         [ 77%]
+test_poker.py::test_eval[faces25-Ranking.THREE_OF_A_KIND] PASSED         [ 78%]
+test_poker.py::test_eval[faces26-Ranking.THREE_OF_A_KIND] PASSED         [ 79%]
+test_poker.py::test_eval[faces27-Ranking.TWO_PAIRS] PASSED               [ 81%]
+test_poker.py::test_eval[faces28-Ranking.TWO_PAIRS] PASSED               [ 82%]
+test_poker.py::test_eval[faces29-Ranking.TWO_PAIRS] PASSED               [ 83%]
+test_poker.py::test_eval[faces30-Ranking.TWO_PAIRS] PASSED               [ 84%]
+test_poker.py::test_eval[faces31-Ranking.TWO_PAIRS] PASSED               [ 86%]
+test_poker.py::test_eval[faces32-Ranking.TWO_PAIRS] PASSED               [ 87%]
+test_poker.py::test_eval[faces33-Ranking.TWO_PAIRS] PASSED               [ 88%]
+test_poker.py::test_eval[faces34-Ranking.ONE_PAIR] PASSED                [ 89%]
+test_poker.py::test_eval[faces35-Ranking.ONE_PAIR] PASSED                [ 91%]
+test_poker.py::test_eval[faces36-Ranking.ONE_PAIR] PASSED                [ 92%]
+test_poker.py::test_eval[faces37-Ranking.ONE_PAIR] PASSED                [ 93%]
+test_poker.py::test_eval[faces38-Ranking.ONE_PAIR] PASSED                [ 94%]
+test_poker.py::test_eval[faces39-Ranking.HIGH_CARD] PASSED               [ 96%]
+test_poker.py::test_eval[faces40-Ranking.HIGH_CARD] PASSED               [ 97%]
+test_poker.py::test_eval[faces41-Ranking.HIGH_CARD] PASSED               [ 98%]
+test_poker.py::test_tie_break PASSED                                     [100%]
+
+----------- coverage: platform win32, python 3.7.5-final-0 -----------
+Name            Stmts   Miss  Cover
+-----------------------------------
+pokerOop.py       208      0   100%
+test_poker.py      85      0   100%
+-----------------------------------
+TOTAL             293      0   100%
+
+
+============================= 79 passed in 0.47s ==============================
